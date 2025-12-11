@@ -1,0 +1,9 @@
+.vscode
+
+.obj
+*.out
+*.a
+
+push_swap
+
+test*.c
