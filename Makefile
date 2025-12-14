@@ -38,20 +38,35 @@ LIBFT    = $(LIBFTDIR)libft.a
 # Includes
 INCLUDES = -I includes/ -I $(LIBFTDIR)includes/
 
-# Source files mandatory
-PUSH_SWAP_DIR         = src/
-PUSH_SWAP_FILE        = push_swap.c ft_debug.c ft_format_input.c ft_strategy_selector.c
+# Source files (grouped with correct directories)
+PUSH_SWAP_DIR             = src/
 
-M_FILE  =   $(addprefix $(PUSH_SWAP_DIR), $(PUSH_SWAP_FILE))
+# Mandatory sources (in src/)
+PUSH_SWAP_MANDATORY       = push_swap.c ft_debug.c ft_format_input.c ft_strategy_selector.c
+
+# Utils sources (in src/utils/)
+PUSH_SWAP_UTILS_DIR       = src/utils/
+PUSH_SWAP_UTILS           = ft_stack_len.c
+
+# Operations sources (in src/operations/)
+PUSH_SWAP_OPERATIONS_DIR  = src/operations/
+PUSH_SWAP_OPERATIONS      = operation_p.c operation_s.c
+
+# Build full paths for all sources
+PUSH_SWAP_FILE            = $(addprefix $(PUSH_SWAP_DIR), $(PUSH_SWAP_MANDATORY)) \
+                            $(addprefix $(PUSH_SWAP_UTILS_DIR), $(PUSH_SWAP_UTILS)) \
+                            $(addprefix $(PUSH_SWAP_OPERATIONS_DIR), $(PUSH_SWAP_OPERATIONS))
+
+M_FILE  = $(PUSH_SWAP_FILE)
 
 # Object files directory
 OBJ_DIR   = .obj/
 OBJ       = $(M_FILE:%.c=$(OBJ_DIR)%.o)
 DEPS      = $(M_FILE:%.c=$(OBJ_DIR)%.d)
 
-# NORMINETTE
+# NORMINETTE (use same paths as norm target)
 # NORM_RET = $(RED)[ERROR]$(BOLD) Norminette Disable$(NC)
-NORM   = $(shell norminette src includes | grep -c 'Error!')
+NORM   = $(shell norminette src/ libft/ includes/ | grep -c 'Error!')
 ifeq ($(NORM), 0)
   NORM_RET = $(GREEN)[DONE] $(BOLD)$(YELLOW)Norminette.$(NC)
 else
@@ -70,7 +85,7 @@ $(OBJ_DIR)%.o : %.c
 	@$(eval COMPILED_FILES := 1)
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) -o $@ -c $< $(INCLUDES)
-	@printf "\n$(GREEN)[Compiling] $(NC)$(shell echo $< | sed 's|^srcs/||')";
+	@printf "\n$(GREEN)[Compiling] $(NC)$(shell echo $< | sed 's|^src/||')";
 
 all : make_libft $(NAME) nothing_to_be_done
 

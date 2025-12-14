@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: lgirard <lgirard@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 17:30:14 by rpetit            #+#    #+#             */
-/*   Updated: 2025/12/14 10:50:05 by rpetit           ###   ########.fr       */
+/*   Updated: 2025/12/14 11:55:44 by lgirard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,13 @@ typedef struct s_push_swap
 	int			*stack_a;
 	int			*stack_b;
 	int			stack_size;
+	int			stack_a_size;
+	int			stack_b_size;
 	t_strategy	strategy;
 }	t_push_swap;
+
+# include "operations.h"
+# include "utils.h"
 
 void	ft_print_stacks(t_push_swap *push_swap);
 void	ft_format_input(int size, char **input, t_push_swap *push_swap);

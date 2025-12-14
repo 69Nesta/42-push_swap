@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strategy_selector.c                             :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgirard <lgirard@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/13 15:18:14 by rpetit            #+#    #+#             */
-/*   Updated: 2025/12/14 11:07:56 by lgirard          ###   ########.fr       */
+/*   Created: 2025/12/14 11:35:29 by lgirard           #+#    #+#             */
+/*   Updated: 2025/12/14 12:01:07 by lgirard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef UTILS_H
+# define UTILS_H
+
 #include "push_swap.h"
 
-void	ft_strategy_selector(t_push_swap *push_swap)
-{
-	(void)push_swap;
-}
+int	ft_stack_len(t_push_swap *push_swap, t_mode mode);
+
+#endif
