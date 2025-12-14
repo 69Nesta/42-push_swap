@@ -40,7 +40,7 @@ INCLUDES = -I includes/ -I $(LIBFTDIR)includes/
 
 # Source files mandatory
 PUSH_SWAP_DIR         = src/
-PUSH_SWAP_FILE        = random_test.c
+PUSH_SWAP_FILE        = push_swap.c ft_debug.c ft_format_input.c ft_strategy_selector.c
 
 M_FILE  =   $(addprefix $(PUSH_SWAP_DIR), $(PUSH_SWAP_FILE))
 

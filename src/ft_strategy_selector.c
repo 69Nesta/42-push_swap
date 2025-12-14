@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   random_test.c                                      :+:      :+:    :+:   */
+/*   ft_strategy_selector.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/11 17:20:30 by rpetit            #+#    #+#             */
-/*   Updated: 2025/12/11 17:27:26 by rpetit           ###   ########.fr       */
+/*   Created: 2025/12/13 15:18:14 by rpetit            #+#    #+#             */
+/*   Updated: 2025/12/14 11:02:13 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-int	main(void)
+void	ft_strategy_selector(t_push_swap *push_swap)
 {
-	ft_printf(GREEN "It's" CYAN " Working \n" RESET_COLOR);
+	(void)push_swap;	
 }

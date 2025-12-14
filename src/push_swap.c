@@ -1,37 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/11 17:30:14 by rpetit            #+#    #+#             */
-/*   Updated: 2025/12/14 10:50:05 by rpetit           ###   ########.fr       */
+/*   Created: 2025/12/12 09:28:19 by rpetit            #+#    #+#             */
+/*   Updated: 2025/12/14 11:03:38 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "push_swap.h"
 
-# include "libft.h"
-
-typedef enum e_strategy
+int	main(int ac, char **av)
 {
-	SIMPLE,
-	MEDIUM,
-	COMPLEX,
-	ADAPTIVE	
-}	t_strategy;
+	t_push_swap	push_swap;
 
-typedef struct s_push_swap
-{
-	int			*stack_a;
-	int			*stack_b;
-	int			stack_size;
-	t_strategy	strategy;
-}	t_push_swap;
+	push_swap.stack_a = malloc(sizeof(int) * (ac - 1));
+	push_swap.stack_b = malloc(sizeof(int) * (ac - 1));
+	ft_format_input(ac, av, &push_swap);
+	ft_print_stacks(&push_swap);
+	
+	// strategy selector
 
-void	ft_print_stacks(t_push_swap *push_swap);
-void	ft_format_input(int size, char **input, t_push_swap *push_swap);
+	ft_printf("\n----------\n\n");
+	
+	ft_print_stacks(&push_swap);
 
-#endif
+	// free push_swap
+}
