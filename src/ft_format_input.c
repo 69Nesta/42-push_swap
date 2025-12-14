@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_format_input.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: lgirard <lgirard@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 15:23:55 by rpetit            #+#    #+#             */
-/*   Updated: 2025/12/14 10:59:21 by rpetit           ###   ########.fr       */
+/*   Updated: 2025/12/14 11:33:27 by lgirard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	ft_format_input(int size, char **input, t_push_swap *push_swap)
 {
-	int			i;
-	int			i_stack;
+	int	i;
+	int	i_stack;
 
 	i = 0;
 	i_stack = 0;
@@ -32,10 +32,11 @@ void	ft_format_input(int size, char **input, t_push_swap *push_swap)
 		else // if (valid_number(input[i]))	
 		{
 			push_swap->stack_a[i_stack] = ft_atoi(input[i]);
-			push_swap->stack_b[i_stack] = 0;
 			i_stack++;
 		}
 		i++;
 	}
 	push_swap->stack_size = i_stack;
+	push_swap->stack_a_size = i_stack;
+	push_swap->stack_b_size = 0;
 }
