@@ -6,7 +6,7 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 17:30:14 by rpetit            #+#    #+#             */
-/*   Updated: 2025/12/15 15:55:47 by rpetit           ###   ########.fr       */
+/*   Updated: 2025/12/15 17:31:24 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	ft_format_input(int size, char **input, t_push_swap *push_swap);
 float	ft_disorder(t_push_swap *push_swap);
 void	ft_free_push_swap(t_push_swap *push_swap);
 
+void	ft_strategy_selector(t_push_swap *push_swap);
 void	ft_strategy_simple(t_push_swap *push_swap);
 void	ft_strategy_medium(t_push_swap *push_swap);
 
