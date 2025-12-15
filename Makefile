@@ -63,7 +63,8 @@ PUSH_SWAP_OPERATIONS      	= operation_p.c \
 PUSH_SWAP_STRATEGIES_DIR	= src/strategies/
 PUSH_SWAP_STRATEGIES      	= ft_strategy_selector.c \
 								simple/ft_strategy_simple.c \
-								medium/ft_strategy_medium.c
+								medium/ft_strategy_medium.c \
+								complex/ft_strategy_complex.c
 
 # Build full paths for all sources
 PUSH_SWAP_FILE	= $(addprefix $(PUSH_SWAP_DIR), $(PUSH_SWAP_MANDATORY)) \

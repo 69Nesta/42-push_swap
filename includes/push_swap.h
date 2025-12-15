@@ -6,7 +6,7 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 17:30:14 by rpetit            #+#    #+#             */
-/*   Updated: 2025/12/15 17:31:24 by rpetit           ###   ########.fr       */
+/*   Updated: 2025/12/15 17:41:51 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@ void	ft_free_push_swap(t_push_swap *push_swap);
 void	ft_strategy_selector(t_push_swap *push_swap);
 void	ft_strategy_simple(t_push_swap *push_swap);
 void	ft_strategy_medium(t_push_swap *push_swap);
+void	ft_strategy_complex(t_push_swap *push_swap);
 
 #endif

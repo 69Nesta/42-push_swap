@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strategy_medium.c                               :+:      :+:    :+:   */
+/*   ft_strategy_complex.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 10:40:33 by rpetit            #+#    #+#             */
-/*   Updated: 2025/12/15 15:53:19 by rpetit           ###   ########.fr       */
+/*   Updated: 2025/12/15 17:41:43 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	ft_repeat_func(int count, t_push_swap *push_swap,
 static void	ft_medium_create_block(t_push_swap *push_swap);
 static int	get_max_index(int *stack, int size);
 
-void	ft_strategy_medium(t_push_swap *push_swap)
+void	ft_strategy_complex(t_push_swap *push_swap)
 {
 	int	max_index;
 
