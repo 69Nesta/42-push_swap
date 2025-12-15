@@ -60,10 +60,15 @@ PUSH_SWAP_OPERATIONS      	= operation_p.c \
 							operation_r.c \
 							operation_rr.c
 
+# Operations sources (in src/operations/)
+PUSH_SWAP_STRATEGIES_DIR	= src/strategies/
+PUSH_SWAP_STRATEGIES      	= simple/ft_strategy_simple.c
+
 # Build full paths for all sources
 PUSH_SWAP_FILE	= $(addprefix $(PUSH_SWAP_DIR), $(PUSH_SWAP_MANDATORY)) \
 					$(addprefix $(PUSH_SWAP_UTILS_DIR), $(PUSH_SWAP_UTILS)) \
-					$(addprefix $(PUSH_SWAP_OPERATIONS_DIR), $(PUSH_SWAP_OPERATIONS))
+					$(addprefix $(PUSH_SWAP_OPERATIONS_DIR), $(PUSH_SWAP_OPERATIONS)) \
+					$(addprefix $(PUSH_SWAP_STRATEGIES_DIR), $(PUSH_SWAP_STRATEGIES))
 
 M_FILE  = $(PUSH_SWAP_FILE)
 

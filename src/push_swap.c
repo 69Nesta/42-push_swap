@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgirard <lgirard@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 09:28:19 by rpetit            #+#    #+#             */
-/*   Updated: 2025/12/15 07:46:57 by lgirard          ###   ########.fr       */
+/*   Updated: 2025/12/15 09:55:22 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ int	main(int ac, char **av)
 	__builtin_printf("\nDisorder : %.2f\n\n", ft_disorder(&push_swap));
 	
 	// strategy selector
-
+	ft_strategy_simple(&push_swap);
+	
 	ft_printf("\n----------\n\n");
 	
 	ft_print_stacks(&push_swap);
