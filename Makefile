@@ -55,7 +55,10 @@ PUSH_SWAP_UTILS				= ft_stack_len.c
 
 # Operations sources (in src/operations/)
 PUSH_SWAP_OPERATIONS_DIR	= src/operations/
-PUSH_SWAP_OPERATIONS      	= operation_p.c operation_s.c
+PUSH_SWAP_OPERATIONS      	= operation_p.c \
+							operation_s.c \
+							operation_r.c \
+							operation_rr.c
 
 # Build full paths for all sources
 PUSH_SWAP_FILE	= $(addprefix $(PUSH_SWAP_DIR), $(PUSH_SWAP_MANDATORY)) \
