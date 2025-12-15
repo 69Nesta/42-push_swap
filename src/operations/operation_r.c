@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operation_r.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgirard <lgirard@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 15:18:07 by lgirard           #+#    #+#             */
-/*   Updated: 2025/12/14 15:36:52 by lgirard          ###   ########.fr       */
+/*   Updated: 2025/12/15 15:37:57 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_r(int *stack, int stack_size)
 {
 	int	i;
-	int temp;
+	int	temp;
 
 	if (stack_size < 2)
 		return ;
@@ -31,10 +31,9 @@ void	ft_r(int *stack, int stack_size)
 
 void	ft_operation_r(t_push_swap *push_swap, t_mode mode)
 {
-	int stack_size;
+	int	stack_size;
 
 	stack_size = ft_stack_len(push_swap, mode);
-
 	if (mode == STACK_A)
 	{
 		ft_r(push_swap->stack_a, stack_size);
@@ -51,5 +50,4 @@ void	ft_operation_r(t_push_swap *push_swap, t_mode mode)
 		ft_r(push_swap->stack_b, push_swap->stack_b_size);
 		ft_printf("rr\n");
 	}
-
 }

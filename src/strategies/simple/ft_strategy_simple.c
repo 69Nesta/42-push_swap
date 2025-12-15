@@ -6,7 +6,7 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 15:32:25 by rpetit            #+#    #+#             */
-/*   Updated: 2025/12/15 09:59:16 by rpetit           ###   ########.fr       */
+/*   Updated: 2025/12/15 15:49:34 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void	ft_strategy_simple(t_push_swap *push_swap)
 {
 	int	index;
-	int stack_size;
-	
+	int	stack_size;
+
 	stack_size = push_swap->stack_a_size;
 	while (ft_disorder(push_swap) != (float)0)
 	{

@@ -1,20 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/14 11:35:29 by lgirard           #+#    #+#             */
-/*   Updated: 2025/12/15 15:34:43 by rpetit           ###   ########.fr       */
+/*   Created: 2025/12/15 15:55:01 by rpetit            #+#    #+#             */
+/*   Updated: 2025/12/15 15:55:35 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#ifndef TYPES_H
+# define TYPES_H
 
-# include "push_swap.h"
+typedef enum e_strategy
+{
+	SIMPLE,
+	MEDIUM,
+	COMPLEX,
+	ADAPTIVE	
+}	t_strategy;
 
-int	ft_stack_len(t_push_swap *push_swap, t_mode mode);
+typedef struct s_push_swap
+{
+	int			*stack_a;
+	int			*stack_b;
+	int			stack_size;
+	int			stack_a_size;
+	int			stack_b_size;
+	t_strategy	strategy;
+}	t_push_swap;
 
 #endif

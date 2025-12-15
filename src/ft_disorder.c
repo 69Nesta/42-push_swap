@@ -6,7 +6,7 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 14:20:27 by rpetit            #+#    #+#             */
-/*   Updated: 2025/12/14 14:35:01 by rpetit           ###   ########.fr       */
+/*   Updated: 2025/12/15 15:53:34 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ float	ft_disorder(t_push_swap *push_swap)
 	int	j;
 	int	mistakes;
 	int	total_pairs;
-	
+
 	i = 0;
 	j = 0;
 	mistakes = 0;

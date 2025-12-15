@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operation_p.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgirard <lgirard@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 11:24:03 by lgirard           #+#    #+#             */
-/*   Updated: 2025/12/14 12:14:12 by lgirard          ###   ########.fr       */
+/*   Updated: 2025/12/15 15:37:12 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	ft_del_top(int *stack, int *stack_size)
 
 void	ft_p(t_push_swap *push_swap, t_mode mode, int *src, int *dest)
 {
-	if(ft_stack_len(push_swap, mode) < 1)
+	if (ft_stack_len(push_swap, mode) < 1)
 		return ;
 	if (mode == STACK_A)
 	{
@@ -60,7 +60,6 @@ void	ft_operation_p(t_push_swap *push_swap, t_mode mode)
 {
 	if (push_swap->stack_size < 1)
 		return ;
-
 	if (mode == STACK_A)
 	{
 		ft_p(push_swap, STACK_B, push_swap->stack_b, push_swap->stack_a);

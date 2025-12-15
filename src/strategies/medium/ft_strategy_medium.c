@@ -6,7 +6,7 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 10:40:33 by rpetit            #+#    #+#             */
-/*   Updated: 2025/12/15 15:28:42 by rpetit           ###   ########.fr       */
+/*   Updated: 2025/12/15 15:53:19 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,31 @@
 
 static void	ft_repeat_func(int count, t_push_swap *push_swap,
 				void (*f)(t_push_swap *, t_mode), t_mode mode);
+static void	ft_medium_create_block(t_push_swap *push_swap);
 static int	get_max_index(int *stack, int size);
 
 void	ft_strategy_medium(t_push_swap *push_swap)
 {
+	int	max_index;
+
+	ft_medium_create_block(push_swap);
+	while (push_swap->stack_b_size)
+	{
+		max_index = get_max_index(push_swap->stack_b, push_swap->stack_b_size);
+		if (max_index <= push_swap->stack_b_size / 2)
+			ft_repeat_func(max_index, push_swap, ft_operation_r, STACK_B);
+		else
+			ft_repeat_func(push_swap->stack_b_size - max_index, push_swap,
+				ft_operation_rr, STACK_B);
+		ft_operation_p(push_swap, STACK_A);
+	}
+}
+
+static void	ft_medium_create_block(t_push_swap *push_swap)
+{
 	int	count_pushed;
 	int	block_size;
 	int	current_block_max;
-	int	max_index;
 
 	count_pushed = 0;
 	block_size = 3;
@@ -43,22 +60,12 @@ void	ft_strategy_medium(t_push_swap *push_swap)
 		}
 		count_pushed++;
 	}
-	while (push_swap->stack_b_size)
-	{
-		max_index = get_max_index(push_swap->stack_b, push_swap->stack_b_size);
-		if (max_index <= push_swap->stack_b_size / 2)
-			ft_repeat_func(max_index, push_swap, ft_operation_r, STACK_B);
-		else
-			ft_repeat_func(push_swap->stack_b_size - max_index, push_swap,
-				ft_operation_rr, STACK_B);
-		ft_operation_p(push_swap, STACK_A);
-	}
 }
 
 static int	get_max_index(int *stack, int size)
 {
-	int index;
-	int max_index;
+	int	index;
+	int	max_index;
 
 	index = 0;
 	max_index = 0;
