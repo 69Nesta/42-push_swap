@@ -1,26 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_debug.c                                         :+:      :+:    :+:   */
+/*   ft_disorder.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/13 15:07:50 by rpetit            #+#    #+#             */
-/*   Updated: 2025/12/14 11:23:31 by rpetit           ###   ########.fr       */
+/*   Created: 2025/12/14 14:20:27 by rpetit            #+#    #+#             */
+/*   Updated: 2025/12/14 14:35:01 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_print_stacks(t_push_swap *push_swap)
+float	ft_disorder(t_push_swap *push_swap)
 {
 	int	i;
-
+	int	j;
+	int	mistakes;
+	int	total_pairs;
+	
 	i = 0;
-	while (i < push_swap->stack_size)
+	j = 0;
+	mistakes = 0;
+	total_pairs = 0;
+	while (i < push_swap->stack_a_size)
 	{
-		ft_printf("%3d	%3d\n", push_swap->stack_a[i], push_swap->stack_b[i]);
+		j = i + 1;
+		while (j < push_swap->stack_a_size)
+		{
+			total_pairs++;
+			if (push_swap->stack_a[i] > push_swap->stack_a[j])
+				mistakes++;
+			j++;
+		}
 		i++;
 	}
-	ft_printf("___	___\n a 	 b \n");
+	return ((float)mistakes / (float)total_pairs);
 }

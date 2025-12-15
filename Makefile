@@ -42,20 +42,28 @@ INCLUDES = -I includes/ -I $(LIBFTDIR)includes/
 PUSH_SWAP_DIR             = src/
 
 # Mandatory sources (in src/)
-PUSH_SWAP_MANDATORY       = push_swap.c ft_debug.c ft_format_input.c ft_strategy_selector.c
+PUSH_SWAP_MANDATORY			= push_swap.c \
+							ft_debug.c \
+							ft_format_input.c \
+							ft_strategy_selector.c \
+							ft_free_push_swap.c \
+							ft_disorder.c
 
 # Utils sources (in src/utils/)
-PUSH_SWAP_UTILS_DIR       = src/utils/
-PUSH_SWAP_UTILS           = ft_stack_len.c
+PUSH_SWAP_UTILS_DIR			= src/utils/
+PUSH_SWAP_UTILS				= ft_stack_len.c
 
 # Operations sources (in src/operations/)
-PUSH_SWAP_OPERATIONS_DIR  = src/operations/
-PUSH_SWAP_OPERATIONS      = operation_p.c operation_s.c
+PUSH_SWAP_OPERATIONS_DIR	= src/operations/
+PUSH_SWAP_OPERATIONS      	= operation_p.c \
+							operation_s.c \
+							operation_r.c \
+							operation_rr.c
 
 # Build full paths for all sources
-PUSH_SWAP_FILE            = $(addprefix $(PUSH_SWAP_DIR), $(PUSH_SWAP_MANDATORY)) \
-                            $(addprefix $(PUSH_SWAP_UTILS_DIR), $(PUSH_SWAP_UTILS)) \
-                            $(addprefix $(PUSH_SWAP_OPERATIONS_DIR), $(PUSH_SWAP_OPERATIONS))
+PUSH_SWAP_FILE	= $(addprefix $(PUSH_SWAP_DIR), $(PUSH_SWAP_MANDATORY)) \
+					$(addprefix $(PUSH_SWAP_UTILS_DIR), $(PUSH_SWAP_UTILS)) \
+					$(addprefix $(PUSH_SWAP_OPERATIONS_DIR), $(PUSH_SWAP_OPERATIONS))
 
 M_FILE  = $(PUSH_SWAP_FILE)
 
