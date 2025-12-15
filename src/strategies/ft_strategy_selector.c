@@ -6,7 +6,7 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 17:22:54 by rpetit            #+#    #+#             */
-/*   Updated: 2025/12/15 17:31:06 by rpetit           ###   ########.fr       */
+/*   Updated: 2025/12/15 17:36:05 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,5 @@ void	ft_strategy_selector(t_push_swap *push_swap)
 	else if (push_swap->strategy == MEDIUM)
 		ft_strategy_medium(push_swap);
 	else if (push_swap->strategy == COMPLEX)
-		ft_strategy_medium(push_swap);
-	//else
-	//	error();		
+		ft_strategy_medium(push_swap);	
 }

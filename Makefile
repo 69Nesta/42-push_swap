@@ -45,7 +45,6 @@ PUSH_SWAP_DIR             = src/
 PUSH_SWAP_MANDATORY			= push_swap.c \
 							ft_debug.c \
 							ft_format_input.c \
-							ft_strategy_selector.c \
 							ft_free_push_swap.c \
 							ft_disorder.c
 
