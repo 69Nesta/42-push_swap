@@ -6,7 +6,7 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 15:55:01 by rpetit            #+#    #+#             */
-/*   Updated: 2025/12/15 15:55:35 by rpetit           ###   ########.fr       */
+/*   Updated: 2025/12/16 14:58:58 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,22 @@ typedef enum e_strategy
 	ADAPTIVE	
 }	t_strategy;
 
+typedef struct s_bench
+{
+	int		sa;
+	int		sb;
+	int		ss;
+	int		pa;
+	int		pb;
+	int		ra;
+	int		rb;
+	int		rr;
+	int		rra;
+	int		rrb;
+	float	disorder;
+}	t_bench;
+
+
 typedef struct s_push_swap
 {
 	int			*stack_a;
@@ -29,6 +45,8 @@ typedef struct s_push_swap
 	int			stack_a_size;
 	int			stack_b_size;
 	t_strategy	strategy;
+	char		bench_mode;
+	t_bench		bench;
 }	t_push_swap;
 
 #endif

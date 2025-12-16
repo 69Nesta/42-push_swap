@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_format_input.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgirard <lgirard@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 15:23:55 by rpetit            #+#    #+#             */
-/*   Updated: 2025/12/14 11:33:27 by lgirard          ###   ########.fr       */
+/*   Updated: 2025/12/16 17:02:51 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,9 @@ void	ft_format_input(int size, char **input, t_push_swap *push_swap)
 			push_swap->strategy = COMPLEX;
 		else if (ft_strncmp(input[i], "--adaptive", 11) == 0)
 			push_swap->strategy = ADAPTIVE;
-		else // if (valid_number(input[i]))	
+		else if (ft_strncmp(input[i], "--bench", 8) == 0)
+			push_swap->bench_mode = 1;
+		else if (valid_number(input[i]))	
 		{
 			push_swap->stack_a[i_stack] = ft_atoi(input[i]);
 			i_stack++;
