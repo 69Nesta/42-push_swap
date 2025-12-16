@@ -50,7 +50,8 @@ PUSH_SWAP_MANDATORY			= push_swap.c \
 
 # Utils sources (in src/utils/)
 PUSH_SWAP_UTILS_DIR			= src/utils/
-PUSH_SWAP_UTILS				= ft_stack_len.c
+PUSH_SWAP_UTILS				= ft_stack_len.c \
+							ft_maths.c
 
 # Operations sources (in src/operations/)
 PUSH_SWAP_OPERATIONS_DIR	= src/operations/

@@ -3,93 +3,116 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strategy_medium.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: lgirard <lgirard@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 10:40:33 by rpetit            #+#    #+#             */
-/*   Updated: 2025/12/15 17:45:48 by rpetit           ###   ########.fr       */
+/*   Updated: 2025/12/16 16:54:36 by lgirard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// static void	ft_repeat_func(int count, t_push_swap *push_swap,
-// 				void (*f)(t_push_swap *, t_mode), t_mode mode);
-// static void	ft_medium_create_block(t_push_swap *push_swap);
-// static int	get_max_index(int *stack, int size);
+void	sort(int *tab, int size, int start)
+{
+	int	i;
+	int	temp;
+
+	i = 0;
+	while (i < size - start)
+	{
+		if (tab[start] > tab[size - 1 - i])
+		{
+			temp = tab[start];
+			tab[start] = tab[size - 1 - i];
+			tab[size - 1 - i] = temp;
+		}
+		i++;
+	}
+}
+
+void	ft_sort_int_tab(int *tab, int size)
+{
+	int	count;
+
+	count = 0;
+	while (count < size)
+	{
+		sort(tab, size, count);
+		count++;
+	}
+}
+
+int	*ft_dup_and_sort(t_push_swap *push_swap, int *stack)
+{
+	int	*sorted_stack;
+	int	i;
+
+	sorted_stack = malloc (push_swap->stack_size * sizeof(int));
+	if (!sorted_stack)
+		return (NULL);
+	i = 0;
+	while (i < push_swap->stack_size)
+	{
+		sorted_stack[i] = stack[i];
+		i++;
+	}
+	ft_sort_int_tab(sorted_stack, i);
+	return (sorted_stack);
+}
+
+void	ft_push_to_a(t_push_swap *push_swap, int *sorted_stack, int limit)
+{
+	int	deep;
+
+	while (push_swap->stack_b_size)
+	{
+		if (push_swap->stack_b[0] == sorted_stack[limit])
+		{
+			ft_operation_p(push_swap, STACK_A);
+			limit--;
+		}
+		else
+		{
+			deep = 0;
+			while (push_swap->stack_b[0] != sorted_stack[limit])
+			{
+				ft_operation_r(push_swap, STACK_B);
+				deep++;
+			}
+			while (deep--)
+			{
+				ft_operation_rr(push_swap, STACK_B);
+				ft_operation_s(push_swap, STACK_B);
+			}
+		}
+	}
+	free(sorted_stack);
+}
 
 void	ft_strategy_medium(t_push_swap *push_swap)
 {
-	(void)push_swap;
-	ft_printf("\n\nMedium\n\n\n");
+	int	index;
+	int	chunk;
+	int	*sorted_stack;
+	int	limit;
 
-	// int	max_index;
-
-	// ft_medium_create_block(push_swap);
-	// while (push_swap->stack_b_size)
-	// {
-	// 	max_index = get_max_index(push_swap->stack_b, push_swap->stack_b_size);
-	// 	if (max_index <= push_swap->stack_b_size / 2)
-	// 		ft_repeat_func(max_index, push_swap, ft_operation_r, STACK_B);
-	// 	else
-	// 		ft_repeat_func(push_swap->stack_b_size - max_index, push_swap,
-	// 			ft_operation_rr, STACK_B);
-	// 	ft_operation_p(push_swap, STACK_A);
-	// }
+	index = 1;
+	chunk = ft_sqrt(push_swap->stack_size);
+	sorted_stack = ft_dup_and_sort(push_swap, push_swap->stack_a);
+	if (!sorted_stack)
+		return ;
+	while (push_swap->stack_a_size)
+	{
+		limit = ft_min(chunk * index, push_swap->stack_size - 1);
+		if (push_swap->stack_a[0] < sorted_stack[limit]
+			|| limit == push_swap->stack_size - 1)
+			ft_operation_p(push_swap, STACK_B);
+		else
+			ft_operation_r(push_swap, STACK_A);
+		if (push_swap->stack_b[0] < push_swap->stack_b[1])
+			ft_operation_s(push_swap, STACK_B);
+		if (push_swap->stack_b_size == limit)
+			index++;
+	}
+	ft_push_to_a(push_swap, sorted_stack, limit);
 }
-
-// static void	ft_medium_create_block(t_push_swap *push_swap)
-// {
-// 	int	count_pushed;
-// 	int	block_size;
-// 	int	current_block_max;
-
-// 	count_pushed = 0;
-// 	block_size = 3;
-// 	current_block_max = 0;
-// 	while (push_swap->stack_a_size)
-// 	{
-// 		if (push_swap->stack_a[0] <= current_block_max)
-// 		{
-// 			ft_operation_p(push_swap, STACK_B);
-// 			if (push_swap->stack_b[0] < current_block_max - block_size / 2)
-// 				ft_operation_r(push_swap, STACK_B);
-// 		}
-// 		else
-// 			ft_operation_r(push_swap, STACK_A);
-// 		if (count_pushed == block_size)
-// 		{
-// 			count_pushed = 0;
-// 			current_block_max += block_size;
-// 		}
-// 		count_pushed++;
-// 	}
-// }
-
-// static int	get_max_index(int *stack, int size)
-// {
-// 	int	index;
-// 	int	max_index;
-
-// 	index = 0;
-// 	max_index = 0;
-// 	while (index < size)
-// 	{
-// 		if (stack[max_index] < stack[index])
-// 			max_index = index;
-// 		index++;
-// 	}
-// 	return (max_index);
-// }
-
-// static void	ft_repeat_func(int count, t_push_swap *push_swap,
-// 				void (*f)(t_push_swap *, t_mode), t_mode mode)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (i < count)
-// 	{
-// 		f(push_swap, mode);
-// 		i++;
-// 	}
-// }
