@@ -6,28 +6,11 @@
 /*   By: lgirard <lgirard@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 10:40:33 by rpetit            #+#    #+#             */
-/*   Updated: 2025/12/16 15:25:10 by lgirard          ###   ########.fr       */
+/*   Updated: 2025/12/16 16:54:36 by lgirard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static int	ft_sqrt(int nb)
-{
-	int i;
-
-	i = 0;
-	while (i * i < nb)
-		i++;
-	return (i);
-}
-
-int ft_min(int a, int b)
-{
-	if (a < b)
-		return (a);
-	return (b);
-}
 
 void	sort(int *tab, int size, int start)
 {
@@ -61,8 +44,8 @@ void	ft_sort_int_tab(int *tab, int size)
 
 int	*ft_dup_and_sort(t_push_swap *push_swap, int *stack)
 {
-	int *sorted_stack;
-	int i;
+	int	*sorted_stack;
+	int	i;
 
 	sorted_stack = malloc (push_swap->stack_size * sizeof(int));
 	if (!sorted_stack)
@@ -77,42 +60,12 @@ int	*ft_dup_and_sort(t_push_swap *push_swap, int *stack)
 	return (sorted_stack);
 }
 
-void	ft_strategy_medium(t_push_swap *push_swap)
+void	ft_push_to_a(t_push_swap *push_swap, int *sorted_stack, int limit)
 {
-	int	index;
-	int chunk;
-	int	*sorted_stack;
-	int limit;
-
-	ft_printf("\n\nMedium\n\n\n");
-
-	index = 1;
-	chunk = ft_sqrt(push_swap->stack_size);
-	sorted_stack = ft_dup_and_sort(push_swap, push_swap->stack_a);
-	if (!sorted_stack)
-		return ;
-
-	while (push_swap->stack_a_size)
-	{
-		limit = ft_min(chunk * index, push_swap->stack_size - 1);
-		if (push_swap->stack_a[0] < sorted_stack[limit] || limit == push_swap->stack_size - 1)
-			ft_operation_p(push_swap, STACK_B);
-		else
-			ft_operation_r(push_swap, STACK_A);
-		if (push_swap->stack_b[0] < push_swap->stack_b[1] && push_swap->stack_a[0] > push_swap->stack_a[1])
-			ft_operation_s(push_swap, BOTH);
-		else if (push_swap->stack_b[0] < push_swap->stack_b[1])
-			ft_operation_s(push_swap, BOTH);
-		if (push_swap->stack_b_size == limit)
-			index++;
-	}
-
 	int	deep;
 
 	while (push_swap->stack_b_size)
 	{
-		if (push_swap->stack_b[0] < push_swap->stack_b[1])
-			ft_operation_s(push_swap, STACK_B);
 		if (push_swap->stack_b[0] == sorted_stack[limit])
 		{
 			ft_operation_p(push_swap, STACK_A);
@@ -126,13 +79,40 @@ void	ft_strategy_medium(t_push_swap *push_swap)
 				ft_operation_r(push_swap, STACK_B);
 				deep++;
 			}
-			while (deep)
+			while (deep--)
 			{
 				ft_operation_rr(push_swap, STACK_B);
 				ft_operation_s(push_swap, STACK_B);
-				deep--;
 			}
 		}
 	}
 	free(sorted_stack);
+}
+
+void	ft_strategy_medium(t_push_swap *push_swap)
+{
+	int	index;
+	int	chunk;
+	int	*sorted_stack;
+	int	limit;
+
+	index = 1;
+	chunk = ft_sqrt(push_swap->stack_size);
+	sorted_stack = ft_dup_and_sort(push_swap, push_swap->stack_a);
+	if (!sorted_stack)
+		return ;
+	while (push_swap->stack_a_size)
+	{
+		limit = ft_min(chunk * index, push_swap->stack_size - 1);
+		if (push_swap->stack_a[0] < sorted_stack[limit]
+			|| limit == push_swap->stack_size - 1)
+			ft_operation_p(push_swap, STACK_B);
+		else
+			ft_operation_r(push_swap, STACK_A);
+		if (push_swap->stack_b[0] < push_swap->stack_b[1])
+			ft_operation_s(push_swap, STACK_B);
+		if (push_swap->stack_b_size == limit)
+			index++;
+	}
+	ft_push_to_a(push_swap, sorted_stack, limit);
 }
