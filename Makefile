@@ -46,7 +46,8 @@ PUSH_SWAP_MANDATORY			= push_swap.c \
 							ft_debug.c \
 							ft_format_input.c \
 							ft_free_push_swap.c \
-							ft_disorder.c
+							ft_disorder.c \
+							ft_bench.c
 
 # Utils sources (in src/utils/)
 PUSH_SWAP_UTILS_DIR			= src/utils/

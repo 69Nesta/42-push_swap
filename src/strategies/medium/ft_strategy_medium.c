@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strategy_medium.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgirard <lgirard@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 10:40:33 by rpetit            #+#    #+#             */
-/*   Updated: 2025/12/16 16:54:36 by lgirard          ###   ########.fr       */
+/*   Updated: 2025/12/16 18:29:21 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,4 +115,5 @@ void	ft_strategy_medium(t_push_swap *push_swap)
 			index++;
 	}
 	ft_push_to_a(push_swap, sorted_stack, limit);
+	push_swap->bench.final_strategy = MEDIUM;
 }

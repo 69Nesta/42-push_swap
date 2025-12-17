@@ -6,7 +6,7 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 11:24:03 by lgirard           #+#    #+#             */
-/*   Updated: 2025/12/15 15:37:12 by rpetit           ###   ########.fr       */
+/*   Updated: 2025/12/16 18:10:24 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,13 @@ void	ft_operation_p(t_push_swap *push_swap, t_mode mode)
 	if (mode == STACK_A)
 	{
 		ft_p(push_swap, STACK_B, push_swap->stack_b, push_swap->stack_a);
+		push_swap->bench.pa++;
 		ft_putstr("pa\n");
 	}
 	else if (mode == STACK_B)
 	{
 		ft_p(push_swap, STACK_A, push_swap->stack_a, push_swap->stack_b);
+		push_swap->bench.pb++;
 		ft_putstr("pb\n");
 	}
 }

@@ -6,15 +6,14 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 15:23:55 by rpetit            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2025/12/16 17:02:51 by rpetit           ###   ########.fr       */
-=======
-/*   Updated: 2025/12/16 16:54:04 by lgirard          ###   ########.fr       */
->>>>>>> 248acf4344b53c90513e90c8298338cdbf6f6b36
+/*   Updated: 2025/12/17 15:37:17 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static void	ft_selctor_intput(int *i_stack, char *input,
+				t_push_swap *push_swap);
 
 void	ft_format_input(int size, char **input, t_push_swap *push_swap)
 {
@@ -23,26 +22,33 @@ void	ft_format_input(int size, char **input, t_push_swap *push_swap)
 
 	i = 0;
 	i_stack = 0;
+	push_swap->strategy = ADAPTIVE;
+	ft_reset_bench(push_swap);
 	while (i < size)
 	{
-		if (ft_strncmp(input[i], "--simple", 9) == 0)
-			push_swap->strategy = SIMPLE;
-		else if (ft_strncmp(input[i], "--medium", 9) == 0)
-			push_swap->strategy = MEDIUM;
-		else if (ft_strncmp(input[i], "--complex", 10) == 0)
-			push_swap->strategy = COMPLEX;
-		else if (ft_strncmp(input[i], "--adaptive", 11) == 0)
-			push_swap->strategy = ADAPTIVE;
-		else if (ft_strncmp(input[i], "--bench", 8) == 0)
-			push_swap->bench_mode = 1;
-		else if (valid_number(input[i]))	
-		{
-			push_swap->stack_a[i_stack] = ft_atoi(input[i]);
-			i_stack++;
-		}
+		ft_selctor_intput(&i_stack, input[i], push_swap);
 		i++;
 	}
 	push_swap->stack_size = i_stack;
 	push_swap->stack_a_size = i_stack;
 	push_swap->stack_b_size = 0;
+}
+
+static void	ft_selctor_intput(int *i_stack, char *input, t_push_swap *push_swap)
+{
+	if (ft_strncmp(input, "--simple", 9) == 0)
+		push_swap->strategy = SIMPLE;
+	else if (ft_strncmp(input, "--medium", 9) == 0)
+		push_swap->strategy = MEDIUM;
+	else if (ft_strncmp(input, "--complex", 10) == 0)
+		push_swap->strategy = COMPLEX;
+	else if (ft_strncmp(input, "--adaptive", 11) == 0)
+		push_swap->strategy = ADAPTIVE;
+	else if (ft_strncmp(input, "--bench", 8) == 0)
+		push_swap->bench_mode = 1;
+	else if (ft_valid_number(input))
+	{
+		push_swap->stack_a[*i_stack] = ft_atoi(input);
+		(*i_stack)++;
+	}
 }

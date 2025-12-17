@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgirard <lgirard@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 17:30:14 by rpetit            #+#    #+#             */
-/*   Updated: 2025/12/16 14:30:15 by lgirard          ###   ########.fr       */
+/*   Updated: 2025/12/16 17:11:38 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,8 @@ void	ft_strategy_selector(t_push_swap *push_swap);
 void	ft_strategy_simple(t_push_swap *push_swap);
 void	ft_strategy_medium(t_push_swap *push_swap);
 void	ft_strategy_complex(t_push_swap *push_swap);
+
+void	ft_print_bench(t_push_swap *push_swap);
+void	ft_reset_bench(t_push_swap *push_swap);
 
 #endif
