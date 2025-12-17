@@ -1,5 +1,0 @@
-[Bench] disorder: 33.33%
-[Bench] strategy: Adaptive (medium)
-[Bench] total_ops: 28
-[Bench] sa :    0 sb :    2 ss :    0  pa :    9  pb :    9
-[Bench] ra :    8 rb :    0 rr :    0 rra :    0 rrb :    0 rrr :    0
