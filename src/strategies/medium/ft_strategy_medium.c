@@ -6,7 +6,7 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 10:40:33 by rpetit            #+#    #+#             */
-/*   Updated: 2025/12/16 18:29:21 by rpetit           ###   ########.fr       */
+/*   Updated: 2025/12/17 15:41:43 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,22 +71,20 @@ void	ft_push_to_a(t_push_swap *push_swap, int *sorted_stack, int limit)
 			ft_operation_p(push_swap, STACK_A);
 			limit--;
 		}
-		else
+		deep = 0;
+		while (push_swap->stack_b[0] != sorted_stack[limit] && ++deep)
 		{
-			deep = 0;
-			while (push_swap->stack_b[0] != sorted_stack[limit])
-			{
-				ft_operation_r(push_swap, STACK_B);
-				deep++;
-			}
-			while (deep--)
-			{
-				ft_operation_rr(push_swap, STACK_B);
+			ft_operation_r(push_swap, STACK_B);
+			if (push_swap->stack_b[0] < push_swap->stack_b[1]
+				&& push_swap->stack_b[1] != sorted_stack[limit])
 				ft_operation_s(push_swap, STACK_B);
-			}
+		}
+		while (deep--)
+		{
+			ft_operation_rr(push_swap, STACK_B);
+			ft_operation_s(push_swap, STACK_B);
 		}
 	}
-	free(sorted_stack);
 }
 
 void	ft_strategy_medium(t_push_swap *push_swap)
@@ -115,5 +113,5 @@ void	ft_strategy_medium(t_push_swap *push_swap)
 			index++;
 	}
 	ft_push_to_a(push_swap, sorted_stack, limit);
-	push_swap->bench.final_strategy = MEDIUM;
+	free(sorted_stack);
 }
