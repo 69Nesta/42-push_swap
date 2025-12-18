@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: lgirard <lgirard@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 17:30:14 by rpetit            #+#    #+#             */
-/*   Updated: 2025/12/16 17:11:38 by rpetit           ###   ########.fr       */
+/*   Updated: 2025/12/18 11:08:36 by lgirard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@
 # include "libft.h"
 # include "operations.h"
 # include "utils.h"
+
+# ifndef PRINT_OPERATION
+#  define PRINT_OPERATION 1
+# endif
 
 void	ft_print_stacks(t_push_swap *push_swap);
 void	ft_format_input(int size, char **input, t_push_swap *push_swap);

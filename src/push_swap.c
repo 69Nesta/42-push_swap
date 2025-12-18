@@ -6,7 +6,7 @@
 /*   By: lgirard <lgirard@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 09:28:19 by rpetit            #+#    #+#             */
-/*   Updated: 2025/12/18 10:01:02 by lgirard          ###   ########.fr       */
+/*   Updated: 2025/12/18 10:58:54 by lgirard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,5 @@ int	main(int ac, char **av)
 	ft_print_bench(&push_swap);
 	ft_free_push_swap(&push_swap);
 	//__builtin_printf("\n\n%.2f\n\n", disorder);
+	return (0);
 }
