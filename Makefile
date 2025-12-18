@@ -27,6 +27,8 @@ DEPFLAGS = -MMD -MP
 CFLAGS   = $(DEPFLAGS) -Wall -Wextra -Werror
 DEBUG_FLAGS = -g3
 
+BONUS_CFLAGS := $(CFLAGS) -DPRINT_OPERATION=0
+
 ifeq ($(MAKECMDGOALS), debug)
 	CFLAGS += $(DEBUG_FLAGS)
 endif
@@ -82,7 +84,7 @@ PUSH_SWAP_FILE	= $(addprefix $(PUSH_SWAP_DIR), $(PUSH_SWAP_MANDATORY)) \
 
 PUSH_SWAP_CHECKER_FILE	= $(addprefix $(PUSH_SWAP_DIR), $(PUSH_SWAP_CHECKER)) \
 					$(addprefix $(PUSH_SWAP_UTILS_DIR), $(PUSH_SWAP_UTILS)) \
-					$(addprefix $(PUSH_SWAP_OPERATIONS_DIR), $(PUSH_SWAP_OPERATIONS)) \
+					$(addprefix $(PUSH_SWAP_OPERATIONS_DIR), $(PUSH_SWAP_OPERATIONS))\
 					$(addprefix $(PUSH_SWAP_STRATEGIES_DIR), $(PUSH_SWAP_STRATEGIES))
 
 
@@ -92,12 +94,13 @@ M_FILE  = $(PUSH_SWAP_FILE)
 CHECKER_M_FILE = $(PUSH_SWAP_CHECKER_FILE)
 
 # Object files directory
+OBJ_BONUS_DIR := .obj_bonus/
 OBJ_DIR   = .obj/
 OBJ       = $(M_FILE:%.c=$(OBJ_DIR)%.o)
-CHECKER_OBJ = $(CHECKER_M_FILE:%.c=$(OBJ_DIR)%.o)
+CHECKER_OBJ = $(CHECKER_M_FILE:%.c=$(OBJ_BONUS_DIR)%.o)
 
 DEPS      = $(M_FILE:%.c=$(OBJ_DIR)%.d)
-CHECKER_DEPS = $(CHECKER_M_FILE:%.c=$(OBJ_DIR)%.d)
+CHECKER_DEPS = $(CHECKER_M_FILE:%.c=$(OBJ_BONUS_DIR)%.d)
 
 # NORMINETTE (use same paths as norm target)
 # NORM_RET = $(RED)[ERROR]$(BOLD) Norminette Disable$(NC)
@@ -120,6 +123,18 @@ $(OBJ_DIR)%.o : %.c
 	@$(eval COMPILED_FILES := 1)
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) -o $@ -c $< $(INCLUDES)
+	@printf "\n$(GREEN)[Compiling] $(NC)$(shell echo $< | sed 's|^src/||')";
+
+# New pattern rule for bonus object files (compile checker sources with BONUS_CFLAGS)
+$(OBJ_BONUS_DIR)%.o : %.c
+	@if [ $(COMPILED_FILES) -eq 0 ]; then \
+		echo "\n$(YELLOW)╔══════════════════════════════════════════════╗$(NC)";                          \
+		echo "$(YELLOW)║      Starting $(YELLOW2)checker$(YELLOW) compilation...       ║$(NC)";       \
+		echo "$(YELLOW)╚══════════════════════════════════════════════╝$(NC)";                        \
+	fi
+	@$(eval COMPILED_FILES := 1)
+	@mkdir -p $(dir $@)
+	@$(CC) $(BONUS_CFLAGS) -o $@ -c $< $(INCLUDES)
 	@printf "\n$(GREEN)[Compiling] $(NC)$(shell echo $< | sed 's|^src/||')";
 
 all : make_libft $(NAME) nothing_to_be_done
@@ -151,7 +166,7 @@ checker: $(LIBFT) $(CHECKER_OBJ)
 	fi
 	@$(eval COMPILED_FILES := 1)
 	@echo "\n\n$(GREEN)[Compiling program] $(NC)checker"
-	@$(CC) $(CFLAGS) -o checker $(CHECKER_OBJ) $(LIBFT)
+	@$(CC) $(BONUS_CFLAGS) -o checker $(CHECKER_OBJ) $(LIBFT)
 
 # bonus target builds the checker
 bonus: checker
