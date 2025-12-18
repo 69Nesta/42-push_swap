@@ -6,7 +6,7 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 15:07:50 by rpetit            #+#    #+#             */
-/*   Updated: 2025/12/14 11:23:31 by rpetit           ###   ########.fr       */
+/*   Updated: 2025/12/18 13:32:29 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@ void	ft_print_stacks(t_push_swap *push_swap)
 	i = 0;
 	while (i < push_swap->stack_size)
 	{
-		ft_printf("%3d	%3d\n", push_swap->stack_a[i], push_swap->stack_b[i]);
+		ft_fprintf(2, "%3d	%3d\n",
+			push_swap->stack_a[i], push_swap->stack_b[i]);
 		i++;
 	}
-	ft_printf("___	___\n a 	 b \n");
+	ft_fprintf(2, "___	___\n a 	 b \n");
 }
