@@ -6,7 +6,7 @@
 /*   By: lgirard <lgirard@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 11:06:09 by lgirard           #+#    #+#             */
-/*   Updated: 2025/12/18 09:59:01 by lgirard          ###   ########.fr       */
+/*   Updated: 2025/12/18 11:08:34 by lgirard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,27 @@
 
 int	ft_do_instruction(t_push_swap *push_swap, char *instruction)
 {
-	if (instruction == "sa")
+	if (!ft_strcmp(instruction, "sa\n"))
 		ft_operation_s(push_swap, STACK_A);
-	else if (instruction == "sb")
+	else if (!ft_strcmp(instruction, "sb\n"))
 		ft_operation_s(push_swap, STACK_B);
-	else if (instruction == "ss")
+	else if (!ft_strcmp(instruction, "ss\n"))
 		ft_operation_s(push_swap, BOTH);
-	else if (instruction == "ra")
+	else if (!ft_strcmp(instruction, "ra\n"))
 		ft_operation_r(push_swap, STACK_A);
-	else if (instruction == "rb")
+	else if (!ft_strcmp(instruction, "rb\n"))
 		ft_operation_r(push_swap, STACK_B);
-	else if (instruction == "rr")
+	else if (!ft_strcmp(instruction, "rr\n"))
 		ft_operation_r(push_swap, BOTH);
-	else if (instruction == "rra")
+	else if (!ft_strcmp(instruction, "rra\n"))
 		ft_operation_rr(push_swap, STACK_A);
-	else if (instruction == "rrb")
+	else if (!ft_strcmp(instruction, "rrb\n"))
 		ft_operation_rr(push_swap, STACK_B);
-	else if (instruction == "rrr")
-		ft_operation_r(push_swap, BOTH);
-	else if (instruction == "pa")
+	else if (!ft_strcmp(instruction, "rrr\n"))
+		ft_operation_rr(push_swap, BOTH);
+	else if (!ft_strcmp(instruction, "pa\n"))
 		ft_operation_p(push_swap, STACK_A);
-	else if (instruction == "pb")
+	else if (!ft_strcmp(instruction, "pb\n"))
 		ft_operation_p(push_swap, STACK_B);
 	else
 		return (1);
@@ -44,14 +44,13 @@ int	ft_do_instruction(t_push_swap *push_swap, char *instruction)
 int	main(int ac, char **av)
 {
 	t_push_swap	push_swap;
-	float		disorder;
 	char		*line;
 
 	push_swap.stack_a = ft_calloc(sizeof(int), (ac - 1));
 	push_swap.stack_b = ft_calloc(sizeof(int), (ac - 1));
 	ft_format_input(ac - 1, av + 1, &push_swap);
 	line = get_next_line(0);
-	while (line != '\n')
+	while (line && ft_strcmp(line, "\n"))
 	{
 		if (ft_do_instruction(&push_swap, line))
 		{
@@ -62,10 +61,11 @@ int	main(int ac, char **av)
 		free(line);
 		line = get_next_line(0);
 	}
-	if (ft_disorder(&push_swap) == (float)0)
-		ft_printf("OK");
+	if (ft_disorder(&push_swap) == (float)0 && !push_swap.stack_b_size)
+		ft_printf("OK\n");
 	else
-		ft_printf("KO");
+		ft_printf("KO\n");
 	free(line);
+	ft_free_push_swap(&push_swap);
 	return (0);
 }

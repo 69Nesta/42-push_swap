@@ -6,7 +6,7 @@
 /*   By: lgirard <lgirard@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 11:18:37 by lgirard           #+#    #+#             */
-/*   Updated: 2025/12/15 07:43:16 by lgirard          ###   ########.fr       */
+/*   Updated: 2025/12/18 11:25:02 by lgirard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ typedef enum e_mode
 	s
 */
 
-void	ft_s(int *stack);
 void	ft_operation_s(t_push_swap *push_swap, t_mode mode);
+int		ft_s(t_push_swap *push_swap, int *stack, int stack_size, t_mode mode);
 
 /*
 	p

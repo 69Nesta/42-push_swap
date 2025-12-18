@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operation_rr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: lgirard <lgirard@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 15:18:07 by lgirard           #+#    #+#             */
-/*   Updated: 2025/12/16 18:12:38 by rpetit           ###   ########.fr       */
+/*   Updated: 2025/12/18 11:17:29 by lgirard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,19 +38,22 @@ void	ft_operation_rr(t_push_swap *push_swap, t_mode mode)
 	{
 		ft_rr(push_swap->stack_a, stack_size);
 		push_swap->bench.rra++;
-		ft_printf("rra\n");
+		if (PRINT_OPERATION)
+			ft_putstr("rra\n");
 	}
 	else if (mode == STACK_B)
 	{
 		ft_rr(push_swap->stack_b, stack_size);
 		push_swap->bench.rrb++;
-		ft_printf("rrb\n");
+		if (PRINT_OPERATION)
+			ft_putstr("rrb\n");
 	}
 	else
 	{
 		ft_rr(push_swap->stack_a, push_swap->stack_a_size);
 		ft_rr(push_swap->stack_b, push_swap->stack_b_size);
 		push_swap->bench.rrr++;
-		ft_printf("rrr\n");
+		if (PRINT_OPERATION)
+			ft_putstr("rrr\n");
 	}
 }

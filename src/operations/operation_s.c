@@ -3,49 +3,55 @@
 /*                                                        :::      ::::::::   */
 /*   operation_s.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: lgirard <lgirard@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 11:12:32 by lgirard           #+#    #+#             */
-/*   Updated: 2025/12/16 18:11:42 by rpetit           ###   ########.fr       */
+/*   Updated: 2025/12/18 11:26:34 by lgirard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_s(int *stack)
+int	ft_s(t_push_swap *push_swap, int *stack, int stack_size, t_mode mode)
 {
 	int	temp;
 
+	if (stack_size < 2)
+		return (1);
 	temp = stack[0];
 	stack[0] = stack[1];
 	stack[1] = temp;
+	if (mode == STACK_A)
+		push_swap->bench.sa++;
+	else if (mode == STACK_B)
+		push_swap->bench.sb++;
+	return (0);
 }
 
 void	ft_operation_s(t_push_swap *push_swap, t_mode mode)
 {
 	if (mode == STACK_A)
 	{
-		if (push_swap->stack_a_size < 2)
+		if (ft_s(push_swap, push_swap->stack_a, push_swap->stack_a_size, mode))
 			return ;
-		ft_s(push_swap->stack_a);
-		push_swap->bench.sa++;
-		ft_putstr("sa\n");
+		if (PRINT_OPERATION)
+			ft_putstr("sa\n");
 	}
 	else if (mode == STACK_B)
 	{
-		if (push_swap->stack_b_size < 2)
+		if (ft_s(push_swap, push_swap->stack_b, push_swap->stack_b_size, mode))
 			return ;
-		ft_s(push_swap->stack_b);
-		push_swap->bench.sb++;
-		ft_putstr("sb\n");
+		if (PRINT_OPERATION)
+			ft_putstr("sb\n");
 	}
 	else if (mode == BOTH)
 	{
 		if (push_swap->stack_b_size < 2 || push_swap->stack_a_size < 2)
 			return ;
-		ft_s(push_swap->stack_b);
-		ft_s(push_swap->stack_a);
+		ft_s(push_swap, push_swap->stack_b, push_swap->stack_b_size, mode);
+		ft_s(push_swap, push_swap->stack_a, push_swap->stack_a_size, mode);
 		push_swap->bench.ss++;
-		ft_putstr("ss\n");
+		if (PRINT_OPERATION)
+			ft_putstr("ss\n");
 	}
 }
