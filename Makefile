@@ -49,6 +49,12 @@ PUSH_SWAP_MANDATORY			= push_swap.c \
 							ft_disorder.c \
 							ft_bench.c
 
+PUSH_SWAP_CHECKER			= ft_checker.c \
+							ft_format_input.c \
+							ft_free_push_swap.c \
+							ft_disorder.c \
+							ft_bench.c
+
 # Utils sources (in src/utils/)
 PUSH_SWAP_UTILS_DIR			= src/utils/
 PUSH_SWAP_UTILS				= ft_stack_len.c \
@@ -74,12 +80,24 @@ PUSH_SWAP_FILE	= $(addprefix $(PUSH_SWAP_DIR), $(PUSH_SWAP_MANDATORY)) \
 					$(addprefix $(PUSH_SWAP_OPERATIONS_DIR), $(PUSH_SWAP_OPERATIONS)) \
 					$(addprefix $(PUSH_SWAP_STRATEGIES_DIR), $(PUSH_SWAP_STRATEGIES))
 
+PUSH_SWAP_CHECKER_FILE	= $(addprefix $(PUSH_SWAP_DIR), $(PUSH_SWAP_CHECKER)) \
+					$(addprefix $(PUSH_SWAP_UTILS_DIR), $(PUSH_SWAP_UTILS)) \
+					$(addprefix $(PUSH_SWAP_OPERATIONS_DIR), $(PUSH_SWAP_OPERATIONS)) \
+					$(addprefix $(PUSH_SWAP_STRATEGIES_DIR), $(PUSH_SWAP_STRATEGIES))
+
+
 M_FILE  = $(PUSH_SWAP_FILE)
+
+# Add checker sources list and derived object/deps
+CHECKER_M_FILE = $(PUSH_SWAP_CHECKER_FILE)
 
 # Object files directory
 OBJ_DIR   = .obj/
 OBJ       = $(M_FILE:%.c=$(OBJ_DIR)%.o)
+CHECKER_OBJ = $(CHECKER_M_FILE:%.c=$(OBJ_DIR)%.o)
+
 DEPS      = $(M_FILE:%.c=$(OBJ_DIR)%.d)
+CHECKER_DEPS = $(CHECKER_M_FILE:%.c=$(OBJ_DIR)%.d)
 
 # NORMINETTE (use same paths as norm target)
 # NORM_RET = $(RED)[ERROR]$(BOLD) Norminette Disable$(NC)
@@ -124,12 +142,27 @@ $(NAME) : $(LIBFT) $(OBJ)
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBFT)
 # 	@make --no-print-directory end_message
 
+# New rule to build checker executable
+checker: $(LIBFT) $(CHECKER_OBJ)
+	@if [ $(COMPILED_FILES) -eq 0 ]; then \
+		echo "\n$(YELLOW)╔══════════════════════════════════════════════╗$(NC)";                          \
+		echo "$(YELLOW)║      Starting $(YELLOW2)checker$(YELLOW) compilation...       ║$(NC)";       \
+		echo "$(YELLOW)╚══════════════════════════════════════════════╝$(NC)";                        \
+	fi
+	@$(eval COMPILED_FILES := 1)
+	@echo "\n\n$(GREEN)[Compiling program] $(NC)checker"
+	@$(CC) $(CFLAGS) -o checker $(CHECKER_OBJ) $(LIBFT)
+
+# bonus target builds the checker
+bonus: checker
+
 make_libft:
 	@make --no-print-directory -C $(LIBFTDIR) all
 
 $(LIBFT): make_libft
 
 clean :
+	@echo "$(RED)[Removing] $(NC)libft object files"
 	@make --no-print-directory -C $(LIBFTDIR) clean
 	@echo "$(RED)[Removing] $(NC)object files"
 	@rm -rf $(OBJ_DIR)
@@ -139,6 +172,14 @@ fclean : clean
 	@if [ -f $(NAME) ]; then \
 		echo "$(RED)[Removing] $(NC)program $(NAME)"; \
 		rm -f $(NAME); \
+	fi
+	@if [ -f checker ]; then \
+		echo "$(RED)[Removing] $(NC)program checker"; \
+		rm -f checker; \
+	fi
+	@if [ -f checker ]; then \
+		echo "$(RED)[Removing] $(NC)program checker"; \
+		rm -f checker; \
 	fi
 
 fcleanp :
@@ -157,6 +198,8 @@ debug: all
 norm:
 	@norminette src/ libft/ includes/
 
-.PHONY: all clean fclean re make_libft nothing_to_be_done norminette debug
+bonus:
 
--include $(DEPS)
+.PHONY: all clean fclean re make_libft nothing_to_be_done norminette debug bonus checker
+
+-include $(DEPS) $(CHECKER_DEPS)
