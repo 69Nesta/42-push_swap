@@ -6,7 +6,7 @@
 /*   By: lgirard <lgirard@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 11:06:09 by lgirard           #+#    #+#             */
-/*   Updated: 2025/12/17 11:22:06 by lgirard          ###   ########.fr       */
+/*   Updated: 2025/12/18 09:59:01 by lgirard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	ft_do_instruction(t_push_swap *push_swap, char *instruction)
 	return (0);
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	t_push_swap	push_swap;
 	float		disorder;
@@ -53,7 +53,7 @@ int main(int ac, char **av)
 	line = get_next_line(0);
 	while (line != '\n')
 	{
-		if (ft_do_instruction(&push_swap ,line))
+		if (ft_do_instruction(&push_swap, line))
 		{
 			free(line);
 			ft_printf("Error");

@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_format_input.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: lgirard <lgirard@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 15:23:55 by rpetit            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2025/12/16 17:02:51 by rpetit           ###   ########.fr       */
-=======
-/*   Updated: 2025/12/16 16:54:04 by lgirard          ###   ########.fr       */
->>>>>>> 248acf4344b53c90513e90c8298338cdbf6f6b36
+/*   Updated: 2025/12/17 12:54:14 by lgirard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +31,7 @@ void	ft_format_input(int size, char **input, t_push_swap *push_swap)
 			push_swap->strategy = ADAPTIVE;
 		else if (ft_strncmp(input[i], "--bench", 8) == 0)
 			push_swap->bench_mode = 1;
-		else if (valid_number(input[i]))	
+		else if (ft_valid_number(input[i]))	
 		{
 			push_swap->stack_a[i_stack] = ft_atoi(input[i]);
 			i_stack++;
