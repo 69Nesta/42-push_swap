@@ -20,6 +20,6 @@ int		ft_min(int a, int b);
 int		ft_stack_len(t_push_swap *push_swap, t_mode mode);
 int		*ft_dup_and_sort(t_push_swap *push_swap, int *stack);
 void	ft_free_split(char **split);
-int		ft_is_in_stack(int *stack, int size, int nbr);
+int		ft_is_in_stack(int *stack, int size, char *nbr);
 
 #endif
