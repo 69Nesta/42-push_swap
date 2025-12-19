@@ -26,7 +26,7 @@ int	main(int ac, char **av)
 	ft_strategy_selector(&push_swap);
 
 	//ft_fprintf(STDERR_FILENO, "\n----------\n\n");
-	//ft_print_stacks(&push_swap);
+	ft_print_stacks(&push_swap);
 	ft_print_bench(&push_swap);
 	ft_free_push_swap(&push_swap);
 	//__builtin_printf("\n\n%.2f\n\n", disorder);

@@ -12,18 +12,21 @@
 
 #include "push_swap.h"
 
-static int	ft_get_max_stack(int *stack, int size);
+static void	ft_normalize_stack(t_push_swap *push_swap);
 static void	ft_radix_sort(t_push_swap *push_swap, int max_bits);
 
 void	ft_strategy_complex(t_push_swap *push_swap)
 {
-	int	max;
 	int	max_bits;
 
-	max = ft_get_max_stack(push_swap->stack_a, push_swap->stack_a_size);
+	ft_normalize_stack(push_swap);
 	max_bits = 0;
-	while ((max >> max_bits) != 0)
-		max_bits++;
+	if (push_swap->stack_a_size > 0)
+	{
+		int max = push_swap->stack_a_size - 1;
+		while ((max >> max_bits) != 0)
+			max_bits++;
+	}
 	ft_radix_sort(push_swap, max_bits);
 }
 
@@ -52,18 +55,31 @@ static void	ft_radix_sort(t_push_swap *push_swap, int max_bits)
 	}
 }
 
-static int	ft_get_max_stack(int *stack, int size)
+static void	ft_normalize_stack(t_push_swap *push_swap)
 {
-	int	index;
-	int	max_index;
+	int	*n_sorted;
+	int	i;
+	int	j;
 
-	index = 0;
-	max_index = 0;
-	while (index < size)
+	if (push_swap->stack_a_size <= 1)
+		return ;
+	n_sorted = ft_dup_and_sort(push_swap, push_swap->stack_a);
+	if (!n_sorted)
+		return ;
+	i = 0;
+	while (i < push_swap->stack_a_size)
 	{
-		if (stack[index] > stack[max_index])
-			max_index = index;
-		index++;
+		j = 0;
+		while (j < push_swap->stack_a_size)
+		{
+			if (push_swap->stack_a[i] == n_sorted[j])
+			{
+				push_swap->stack_a[i] = j;
+				break ;
+			}
+			j++;
+		}
+		i++;
 	}
-	return (stack[max_index]);
+	free(n_sorted);
 }

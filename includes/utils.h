@@ -18,5 +18,6 @@
 int	ft_sqrt(int nb);
 int	ft_min(int a, int b);
 int	ft_stack_len(t_push_swap *push_swap, t_mode mode);
+int	*ft_dup_and_sort(t_push_swap *push_swap, int *stack);
 
 #endif
