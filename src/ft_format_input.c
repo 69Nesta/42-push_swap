@@ -34,6 +34,8 @@ void	ft_format_input(int size, char **input, t_push_swap *push_swap)
 	}
 	push_swap->stack_a = ft_calloc(sizeof(int), (total_nums));
 	push_swap->stack_b = ft_calloc(sizeof(int), (total_nums));
+	if (push_swap->stack_a == NULL || push_swap->stack_b == NULL)
+		ft_error_malloc(push_swap);
 	i = 0;
 	while (i < size)
 	{
@@ -41,8 +43,6 @@ void	ft_format_input(int size, char **input, t_push_swap *push_swap)
 		i++;
 	}
 	push_swap->stack_size = i_stack;
-	push_swap->stack_a_size = i_stack;
-	push_swap->stack_b_size = 0;
 }
 
 static int	ft_try_apply_option(char *input, t_push_swap *push_swap)
