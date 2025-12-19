@@ -10,3 +10,5 @@ test*.c
 checker_linux
 push_swap_visualizer
 log.txt
+/.obj_bonus
+checker
