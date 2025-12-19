@@ -156,8 +156,8 @@ Our implementation meets and exceeds the project's performance requirements:
 
 | Input Size | Minimum Requirement | Good Performance | Excellent Performance | Our Average |
 |------------|---------------------|------------------|----------------------|-------------|
-| 100 numbers| < 2000 ops         | < 1500 ops       | < 700 ops            | ~650 ops    |
-| 500 numbers| < 12000 ops        | < 8000 ops       | < 5500 ops           | ~5200 ops   |
+| 100 numbers| < 2000 ops         | < 1500 ops       | < 700 ops            | ~1100 ops    |
+| 500 numbers| < 12000 ops        | < 8000 ops       | < 5500 ops           | ~6784 ops   |
 
 Benchmarks conducted on random permutations show consistent excellent performance across all input sizes.
 
