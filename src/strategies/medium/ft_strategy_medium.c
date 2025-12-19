@@ -12,80 +12,8 @@
 
 #include "push_swap.h"
 
-void	sort(int *tab, int size, int start)
-{
-	int	i;
-	int	temp;
-
-	i = 0;
-	while (i < size - start)
-	{
-		if (tab[start] > tab[size - 1 - i])
-		{
-			temp = tab[start];
-			tab[start] = tab[size - 1 - i];
-			tab[size - 1 - i] = temp;
-		}
-		i++;
-	}
-}
-
-void	ft_sort_int_tab(int *tab, int size)
-{
-	int	count;
-
-	count = 0;
-	while (count < size)
-	{
-		sort(tab, size, count);
-		count++;
-	}
-}
-
-int	*ft_dup_and_sort(t_push_swap *push_swap, int *stack)
-{
-	int	*sorted_stack;
-	int	i;
-
-	sorted_stack = malloc (push_swap->stack_size * sizeof(int));
-	if (!sorted_stack)
-		return (NULL);
-	i = 0;
-	while (i < push_swap->stack_size)
-	{
-		sorted_stack[i] = stack[i];
-		i++;
-	}
-	ft_sort_int_tab(sorted_stack, i);
-	return (sorted_stack);
-}
-
-void	ft_push_to_a(t_push_swap *push_swap, int *sorted_stack, int limit)
-{
-	int	deep;
-
-	while (push_swap->stack_b_size)
-	{
-		if (push_swap->stack_b[0] == sorted_stack[limit])
-		{
-			ft_operation_p(push_swap, STACK_A);
-			limit--;
-		}
-		deep = 0;
-		while (push_swap->stack_b[0] != sorted_stack[limit] && ++deep)
-		{
-			ft_operation_r(push_swap, STACK_B);
-			if (push_swap->stack_b[0] < push_swap->stack_b[1]
-				&& push_swap->stack_b[1] != sorted_stack[limit])
-				ft_operation_s(push_swap, STACK_B);
-		}
-		while (deep--)
-		{
-			ft_operation_rr(push_swap, STACK_B);
-			ft_operation_s(push_swap, STACK_B);
-		}
-	}
-}
+void		ft_strategy_medium(t_push_swap *push_swap);
+static void	ft_push_to_a(t_push_swap *push_swap, int *sorted_stack, int limit);
 
 void	ft_strategy_medium(t_push_swap *push_swap)
 {
@@ -114,4 +42,31 @@ void	ft_strategy_medium(t_push_swap *push_swap)
 	}
 	ft_push_to_a(push_swap, sorted_stack, limit);
 	free(sorted_stack);
+}
+
+static void	ft_push_to_a(t_push_swap *push_swap, int *sorted_stack, int limit)
+{
+	int	deep;
+
+	while (push_swap->stack_b_size)
+	{
+		if (push_swap->stack_b[0] == sorted_stack[limit])
+		{
+			ft_operation_p(push_swap, STACK_A);
+			limit--;
+		}
+		deep = 0;
+		while (push_swap->stack_b[0] != sorted_stack[limit] && ++deep)
+		{
+			ft_operation_r(push_swap, STACK_B);
+			if (push_swap->stack_b[0] < push_swap->stack_b[1]
+				&& push_swap->stack_b[1] != sorted_stack[limit])
+				ft_operation_s(push_swap, STACK_B);
+		}
+		while (deep--)
+		{
+			ft_operation_rr(push_swap, STACK_B);
+			ft_operation_s(push_swap, STACK_B);
+		}
+	}
 }

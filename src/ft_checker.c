@@ -12,34 +12,7 @@
 
 #include "push_swap.h"
 
-int	ft_do_instruction(t_push_swap *push_swap, char *instruction)
-{
-	if (!ft_strcmp(instruction, "sa\n"))
-		ft_operation_s(push_swap, STACK_A);
-	else if (!ft_strcmp(instruction, "sb\n"))
-		ft_operation_s(push_swap, STACK_B);
-	else if (!ft_strcmp(instruction, "ss\n"))
-		ft_operation_s(push_swap, BOTH);
-	else if (!ft_strcmp(instruction, "ra\n"))
-		ft_operation_r(push_swap, STACK_A);
-	else if (!ft_strcmp(instruction, "rb\n"))
-		ft_operation_r(push_swap, STACK_B);
-	else if (!ft_strcmp(instruction, "rr\n"))
-		ft_operation_r(push_swap, BOTH);
-	else if (!ft_strcmp(instruction, "rra\n"))
-		ft_operation_rr(push_swap, STACK_A);
-	else if (!ft_strcmp(instruction, "rrb\n"))
-		ft_operation_rr(push_swap, STACK_B);
-	else if (!ft_strcmp(instruction, "rrr\n"))
-		ft_operation_rr(push_swap, BOTH);
-	else if (!ft_strcmp(instruction, "pa\n"))
-		ft_operation_p(push_swap, STACK_A);
-	else if (!ft_strcmp(instruction, "pb\n"))
-		ft_operation_p(push_swap, STACK_B);
-	else
-		return (1);
-	return (0);
-}
+static int	ft_do_instruction(t_push_swap *push_swap, char *instruction);
 
 int	main(int ac, char **av)
 {
@@ -67,5 +40,34 @@ int	main(int ac, char **av)
 		ft_printf("KO\n");
 	free(line);
 	ft_free_push_swap(&push_swap);
+	return (0);
+}
+
+static int	ft_do_instruction(t_push_swap *push_swap, char *instruction)
+{
+	if (!ft_strcmp(instruction, "sa\n"))
+		ft_operation_s(push_swap, STACK_A);
+	else if (!ft_strcmp(instruction, "sb\n"))
+		ft_operation_s(push_swap, STACK_B);
+	else if (!ft_strcmp(instruction, "ss\n"))
+		ft_operation_s(push_swap, BOTH);
+	else if (!ft_strcmp(instruction, "ra\n"))
+		ft_operation_r(push_swap, STACK_A);
+	else if (!ft_strcmp(instruction, "rb\n"))
+		ft_operation_r(push_swap, STACK_B);
+	else if (!ft_strcmp(instruction, "rr\n"))
+		ft_operation_r(push_swap, BOTH);
+	else if (!ft_strcmp(instruction, "rra\n"))
+		ft_operation_rr(push_swap, STACK_A);
+	else if (!ft_strcmp(instruction, "rrb\n"))
+		ft_operation_rr(push_swap, STACK_B);
+	else if (!ft_strcmp(instruction, "rrr\n"))
+		ft_operation_rr(push_swap, BOTH);
+	else if (!ft_strcmp(instruction, "pa\n"))
+		ft_operation_p(push_swap, STACK_A);
+	else if (!ft_strcmp(instruction, "pb\n"))
+		ft_operation_p(push_swap, STACK_B);
+	else
+		return (1);
 	return (0);
 }
