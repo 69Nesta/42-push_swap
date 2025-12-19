@@ -17,6 +17,8 @@ int	main(int ac, char **av)
 	t_push_swap	push_swap;
 
 	ft_format_input(ac - 1, av + 1, &push_swap);
+	push_swap.stack_a_size = push_swap.stack_size;
+	push_swap.stack_b_size = 0;
 	push_swap.bench.disorder = ft_disorder(&push_swap);
 	ft_strategy_selector(&push_swap);
 	ft_print_bench(&push_swap);
