@@ -14,20 +14,6 @@
 
 static int	ft_do_instruction(t_push_swap *push_swap, char *instruction);
 
-void	ft_print_stacks(t_push_swap *push_swap)
-{
-	int	i;
-
-	i = 0;
-	while (i < push_swap->stack_size)
-	{
-		ft_fprintf(2, "%3d	%3d\n",
-			push_swap->stack_a[i], push_swap->stack_b[i]);
-		i++;
-	}
-	ft_fprintf(2, "___	___\n a 	 b \n");
-}
-
 int	main(int ac, char **av)
 {
 	t_push_swap	push_swap;
