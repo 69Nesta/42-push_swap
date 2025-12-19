@@ -57,6 +57,9 @@ To view performance metrics:
 # Operations are output to stdout, metrics to stderr (saved to bench.txt)
 ```
 
+**Benchmark Preview**
+![bench preview](https://github.com/69Nesta/42-push_swap/blob/main/assets/bench.jpg?raw=true)
+
 #### Using the checker
 The `checker` program verifies that a sequence of operations correctly sorts the stack:
 ```bash
