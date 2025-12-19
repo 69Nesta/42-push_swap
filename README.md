@@ -216,6 +216,7 @@ Both authors contributed equally to all aspects of the project:
 - Stack operation utilities
 - Implementation of the bubble-sort algorithm (simple strategy)  
 - Implementation of the chunk-based algorithm (medium strategy)  
+- Performance optimization
 - Checker program (bonus part)
 
 Both authors participated in algorithm design, code review, documentation, and project defense preparation.
