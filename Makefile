@@ -49,7 +49,8 @@ PUSH_SWAP_MANDATORY			= push_swap.c \
 							ft_format_input.c \
 							ft_free_push_swap.c \
 							ft_disorder.c \
-							ft_bench.c
+							ft_bench.c \
+							ft_error.c
 
 PUSH_SWAP_CHECKER			= ft_checker.c \
 							ft_format_input.c \
@@ -60,7 +61,9 @@ PUSH_SWAP_CHECKER			= ft_checker.c \
 # Utils sources (in src/utils/)
 PUSH_SWAP_UTILS_DIR			= src/utils/
 PUSH_SWAP_UTILS				= ft_stack_len.c \
-							ft_maths.c
+								ft_maths.c \
+								ft_free_split.c \
+								ft_is_in_stack.c
 
 # Operations sources (in src/operations/)
 PUSH_SWAP_OPERATIONS_DIR	= src/operations/

@@ -16,10 +16,8 @@ int	main(int ac, char **av)
 {
 	t_push_swap	push_swap;
 
-	push_swap.stack_a = ft_calloc(sizeof(int), (ac - 1));
-	push_swap.stack_b = ft_calloc(sizeof(int), (ac - 1));
 	ft_format_input(ac - 1, av + 1, &push_swap);
-	//ft_print_stacks(&push_swap);
+	ft_print_stacks(&push_swap);
 	//ft_fprintf(STDERR_FILENO, "----------\n\n");
 	push_swap.bench.disorder = ft_disorder(&push_swap);
 
