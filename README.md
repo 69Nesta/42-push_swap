@@ -159,7 +159,18 @@ Our implementation meets and exceeds the project's performance requirements:
 | 100 numbers| < 2000 ops         | < 1500 ops       | < 700 ops            | ~1100 ops    |
 | 500 numbers| < 12000 ops        | < 8000 ops       | < 5500 ops           | ~6784 ops   |
 
-Benchmarks conducted on random permutations show consistent excellent performance across all input sizes.
+Benchmarks conducted on random permutations show consisten5 4 3 --simple 2 1 0" t excellent performance across all input sizes.
+
+### Visualize Algorithms
+
+#### `Bubble Sort` - Simple - 100 Numbers - ~11k Operations
+![Bubble Sort preview](https://github.com/69Nesta/42-push_swap/blob/main/assets/bubble_sort.gif?raw=true)
+#### `Chunk Based` - Medium - 100 Numbers - 1131 Operations
+![Chunk Based preview](https://github.com/69Nesta/42-push_swap/blob/main/assets/chunk_based.gif?raw=true)
+#### `Radix LSD` - Complex - 100 Numbers - 1084 Operations
+![Radix LSD preview](https://github.com/69Nesta/42-push_swap/blob/main/assets/radix_sort.gif?raw=true)
+
+Thanx to [Emmanuel Ruaud](https://github.com/o-reo/push_swap_visualizer) for the visualizer
 
 ## Repository Structure
 
