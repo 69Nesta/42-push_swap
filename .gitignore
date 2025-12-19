@@ -12,3 +12,4 @@ push_swap_visualizer
 log.txt
 /.obj_bonus
 checker
+/args.txt

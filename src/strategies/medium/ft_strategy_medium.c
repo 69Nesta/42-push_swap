@@ -63,7 +63,6 @@ int	*ft_dup_and_sort(t_push_swap *push_swap, int *stack)
 void	ft_push_to_a(t_push_swap *push_swap, int *sorted_stack, int limit)
 {
 	int	deep;
-	int unsorted_a;
 
 	while (push_swap->stack_b_size)
 	{
