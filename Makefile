@@ -134,7 +134,7 @@ $(OBJ_DIR)%.o : %.c
 $(OBJ_BONUS_DIR)%.o : %.c
 	@if [ $(COMPILED_FILES) -eq 0 ]; then \
 		echo "\n$(YELLOW)╔══════════════════════════════════════════════╗$(NC)";                          \
-		echo "$(YELLOW)║      Starting $(YELLOW2)checker$(YELLOW) compilation...       ║$(NC)";       \
+		echo "$(YELLOW)║        Starting $(YELLOW2)checker$(YELLOW) compilation...       ║$(NC)";       \
 		echo "$(YELLOW)╚══════════════════════════════════════════════╝$(NC)";                        \
 	fi
 	@$(eval COMPILED_FILES := 1)
@@ -166,7 +166,7 @@ $(NAME) : $(LIBFT) $(OBJ)
 checker: $(LIBFT) $(CHECKER_OBJ)
 	@if [ $(COMPILED_FILES) -eq 0 ]; then \
 		echo "\n$(YELLOW)╔══════════════════════════════════════════════╗$(NC)";                          \
-		echo "$(YELLOW)║      Starting $(YELLOW2)checker$(YELLOW) compilation...       ║$(NC)";       \
+		echo "$(YELLOW)║        Starting $(YELLOW2)checker$(YELLOW) compilation...       ║$(NC)";       \
 		echo "$(YELLOW)╚══════════════════════════════════════════════╝$(NC)";                        \
 	fi
 	@$(eval COMPILED_FILES := 1)
