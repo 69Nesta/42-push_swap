@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-static int	check_int(int nb, char *nb_str);
+static int	check_int(char *nb_str);
 static int	ft_try_apply_option(char *input, t_push_swap *push_swap);
 static int	ft_count_numbers_in_arg(char *arg, t_push_swap *push_swap);
 static void	ft_fill_from_arg(int *i_stack, char *arg, t_push_swap *push_swap);
@@ -80,9 +80,7 @@ static int	ft_count_numbers_in_arg(char *arg, t_push_swap *push_swap)
 	{
 		if (ft_valid_number(tokens[i]))
 			count++;
-		else if (ft_try_apply_option(arg, push_swap))
-			continue ;
-		else
+		else if (!ft_try_apply_option(tokens[i], push_swap))
 			ft_error_input(tokens);
 		i++;
 	}
@@ -96,33 +94,33 @@ static void	ft_fill_from_arg(int *i_stack, char *arg, t_push_swap *push_swap)
 	int		i;
 	int		number;
 
-	if (ft_try_apply_option(arg, push_swap))
-		return ;
 	tokens = ft_split(arg, ' ');
 	if (!tokens)
 		ft_error_malloc(push_swap);
 	i = 0;
 	while (tokens[i])
 	{
-		number = ft_atoi(tokens[i]);
-		if (ft_valid_number(tokens[i]) && !check_int(number, tokens[i])
-			&& !ft_is_in_stack(push_swap->stack_a, *i_stack, number))
+		if (!ft_try_apply_option(tokens[i], push_swap))
 		{
-			push_swap->stack_a[*i_stack] = number;
-			(*i_stack)++;
+			number = ft_atoi(tokens[i]);
+			if (ft_valid_number(tokens[i]) && !check_int(tokens[i])
+				&& !ft_is_in_stack(push_swap->stack_a, *i_stack, tokens[i]))
+				push_swap->stack_a[(*i_stack)++] = ft_atoi(tokens[i]);
+			else
+				ft_error_double(tokens, i, push_swap);
 		}
-		else
-			ft_error_double(tokens, i, push_swap);
 		free(tokens[i]);
 		i++;
 	}
 	free(tokens);
 }
 
-static int	check_int(int nb, char *nb_str)
+static int	check_int(char *nb_str)
 {
-	char *nb_itoa;
+	char	*nb_itoa;
+	int		nb;
 
+	nb = ft_atoi(nb_str);
 	nb_itoa = ft_itoa(nb);
 	if (!nb_itoa)
 		return (1);
