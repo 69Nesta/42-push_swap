@@ -1,11 +1,9 @@
 .vscode
-
 .obj
 *.out
 *.a
-
 push_swap
-
+checker
 test*.c
 checker_linux
 push_swap_visualizer
