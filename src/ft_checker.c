@@ -14,14 +14,28 @@
 
 static int	ft_do_instruction(t_push_swap *push_swap, char *instruction);
 
+void	ft_print_stacks(t_push_swap *push_swap)
+{
+	int	i;
+
+	i = 0;
+	while (i < push_swap->stack_size)
+	{
+		ft_fprintf(2, "%3d	%3d\n",
+			push_swap->stack_a[i], push_swap->stack_b[i]);
+		i++;
+	}
+	ft_fprintf(2, "___	___\n a 	 b \n");
+}
+
 int	main(int ac, char **av)
 {
 	t_push_swap	push_swap;
 	char		*line;
 
-	push_swap.stack_a = ft_calloc(sizeof(int), (ac - 1));
-	push_swap.stack_b = ft_calloc(sizeof(int), (ac - 1));
 	ft_format_input(ac - 1, av + 1, &push_swap);
+	push_swap.stack_a_size = push_swap.stack_size;
+	push_swap.stack_b_size = 0;
 	line = get_next_line(0);
 	while (line && ft_strcmp(line, "\n"))
 	{
