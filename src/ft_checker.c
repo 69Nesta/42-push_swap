@@ -19,9 +19,9 @@ int	main(int ac, char **av)
 	t_push_swap	push_swap;
 	char		*line;
 
-	push_swap.stack_a = ft_calloc(sizeof(int), (ac - 1));
-	push_swap.stack_b = ft_calloc(sizeof(int), (ac - 1));
 	ft_format_input(ac - 1, av + 1, &push_swap);
+	push_swap.stack_a_size = push_swap.stack_size;
+	push_swap.stack_b_size = 0;
 	line = get_next_line(0);
 	while (line && ft_strcmp(line, "\n"))
 	{
