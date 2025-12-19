@@ -6,88 +6,81 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 10:40:33 by rpetit            #+#    #+#             */
-/*   Updated: 2025/12/16 18:31:04 by rpetit           ###   ########.fr       */
+/*   Updated: 2025/12/18 15:33:05 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	ft_repeat_func(int count, t_push_swap *push_swap,
-				void (*f)(t_push_swap *, t_mode), t_mode mode);
-static void	ft_medium_create_block(t_push_swap *push_swap);
-static int	get_max_index(int *stack, int size);
+static void	ft_normalize_stack(t_push_swap *push_swap);
+static void	ft_radix_sort(t_push_swap *push_swap, int max_bits);
 
 void	ft_strategy_complex(t_push_swap *push_swap)
 {
-	int	max_index;
+	int	max_bits;
+	int	max;
 
-	ft_medium_create_block(push_swap);
-	while (push_swap->stack_b_size)
+	ft_normalize_stack(push_swap);
+	max_bits = 0;
+	if (push_swap->stack_a_size > 0)
 	{
-		max_index = get_max_index(push_swap->stack_b, push_swap->stack_b_size);
-		if (max_index <= push_swap->stack_b_size / 2)
-			ft_repeat_func(max_index, push_swap, ft_operation_r, STACK_B);
-		else
-			ft_repeat_func(push_swap->stack_b_size - max_index, push_swap,
-				ft_operation_rr, STACK_B);
-		ft_operation_p(push_swap, STACK_A);
+		max = push_swap->stack_a_size - 1;
+		while ((max >> max_bits) != 0)
+			max_bits++;
 	}
-	push_swap->bench.final_strategy = COMPLEX;
+	ft_radix_sort(push_swap, max_bits);
 }
 
-static void	ft_medium_create_block(t_push_swap *push_swap)
-{
-	int	count_pushed;
-	int	block_size;
-	int	current_block_max;
-
-	count_pushed = 0;
-	block_size = 3;
-	current_block_max = 0;
-	while (push_swap->stack_a_size)
-	{
-		if (push_swap->stack_a[0] <= current_block_max)
-		{
-			ft_operation_p(push_swap, STACK_B);
-			if (push_swap->stack_b[0] < current_block_max - block_size / 2)
-				ft_operation_r(push_swap, STACK_B);
-		}
-		else
-			ft_operation_r(push_swap, STACK_A);
-		if (count_pushed == block_size)
-		{
-			count_pushed = 0;
-			current_block_max += block_size;
-		}
-		count_pushed++;
-	}
-}
-
-static int	get_max_index(int *stack, int size)
-{
-	int	index;
-	int	max_index;
-
-	index = 0;
-	max_index = 0;
-	while (index < size)
-	{
-		if (stack[max_index] < stack[index])
-			max_index = index;
-		index++;
-	}
-	return (max_index);
-}
-
-static void	ft_repeat_func(int count, t_push_swap *push_swap,
-				void (*f)(t_push_swap *, t_mode), t_mode mode)
+static void	ft_radix_sort(t_push_swap *push_swap, int max_bits)
 {
 	int	i;
+	int	bit;
+	int	stack_size;
 
-	i = 0;
-	while (i < count)
+	bit = 0;
+	stack_size = push_swap->stack_a_size;
+	while (bit < max_bits)
 	{
-		f(push_swap, mode);
+		i = 0;
+		while (i < stack_size)
+		{
+			if (((push_swap->stack_a[0] >> bit) & 1) == 0)
+				ft_operation_p(push_swap, STACK_B);
+			else
+				ft_operation_r(push_swap, STACK_A);
+			i++;
+		}
+		while (push_swap->stack_b_size)
+			ft_operation_p(push_swap, STACK_A);
+		bit++;
+	}
+}
+
+static void	ft_normalize_stack(t_push_swap *push_swap)
+{
+	int	*n_sorted;
+	int	i;
+	int	j;
+
+	if (push_swap->stack_a_size <= 1)
+		return ;
+	n_sorted = ft_dup_and_sort(push_swap, push_swap->stack_a);
+	if (!n_sorted)
+		return ;
+	i = 0;
+	while (i < push_swap->stack_a_size)
+	{
+		j = 0;
+		while (j < push_swap->stack_a_size)
+		{
+			if (push_swap->stack_a[i] == n_sorted[j])
+			{
+				push_swap->stack_a[i] = j;
+				break ;
+			}
+			j++;
+		}
 		i++;
 	}
+	free(n_sorted);
 }
