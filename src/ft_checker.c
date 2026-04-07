@@ -13,19 +13,32 @@
 #include "push_swap.h"
 
 static int	ft_do_instruction(t_push_swap *push_swap, char *instruction);
+static int	ft_iteration(t_push_swap *push_swap);
 
 int	main(int ac, char **av)
 {
 	t_push_swap	push_swap;
-	char		*line;
+	int			return_value;
 
 	ft_format_input(ac - 1, av + 1, &push_swap);
 	push_swap.stack_a_size = push_swap.stack_size;
 	push_swap.stack_b_size = 0;
+	if (push_swap.stack_size)
+		return_value = ft_iteration(&push_swap);
+	else
+		return_value = 0;
+	ft_free_push_swap(&push_swap);
+	return (return_value);
+}
+
+static int	ft_iteration(t_push_swap *push_swap)
+{
+	char		*line;
+
 	line = get_next_line(0);
 	while (line && ft_strcmp(line, "\n"))
 	{
-		if (ft_do_instruction(&push_swap, line))
+		if (ft_do_instruction(push_swap, line))
 		{
 			free(line);
 			ft_printf("Error");
@@ -34,12 +47,11 @@ int	main(int ac, char **av)
 		free(line);
 		line = get_next_line(0);
 	}
-	if (ft_disorder(&push_swap) == (float)0 && !push_swap.stack_b_size)
+	if (ft_disorder(push_swap) == (float)0 && !(*push_swap).stack_b_size)
 		ft_printf("OK\n");
 	else
 		ft_printf("KO\n");
 	free(line);
-	ft_free_push_swap(&push_swap);
 	return (0);
 }
 
