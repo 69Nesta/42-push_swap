@@ -186,6 +186,7 @@ clean :
 	@make --no-print-directory -C $(LIBFTDIR) clean
 	@echo "$(RED)[Removing] $(NC)object files"
 	@rm -rf $(OBJ_DIR)
+	@rm -rf $(OBJ_BONUS_DIR)
 
 fclean : clean
 	@make --no-print-directory -C $(LIBFTDIR) fclean
@@ -196,18 +197,6 @@ fclean : clean
 	@if [ -f checker ]; then \
 		echo "$(RED)[Removing] $(NC)program checker"; \
 		rm -f checker; \
-	fi
-	@if [ -f checker ]; then \
-		echo "$(RED)[Removing] $(NC)program checker"; \
-		rm -f checker; \
-	fi
-
-fcleanp :
-	@echo "$(RED)[Removing] $(NC)object files"
-	@rm -rf $(OBJ_DIR)
-	@if [ -f $(NAME) ]; then \
-		echo "$(RED)[Removing] $(NC)program $(NAME)"; \
-		rm -f $(NAME); \
 	fi
 
 re : fclean
