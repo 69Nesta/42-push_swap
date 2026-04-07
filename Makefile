@@ -207,8 +207,6 @@ debug: all
 norm:
 	@norminette src/ libft/ includes/
 
-bonus:
-
-.PHONY: all clean fclean re make_libft nothing_to_be_done norminette debug bonus checker
+.PHONY: all clean fclean re make_libft nothing_to_be_done norm debug bonus checker
 
 -include $(DEPS) $(CHECKER_DEPS)
